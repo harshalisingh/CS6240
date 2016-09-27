@@ -1,0 +1,15 @@
+[0m[[0minfo[0m] [0mPackaging /home/hduser/Singh_Mehta_A3/MedianScala/target/scala-2.10/mediancomparison_2.10-1.0.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	main/MedianComparison.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MedianScala/target/scala-2.10/classes/main/MedianComparison.class[0m
+[0m[[0mdebug[0m] [0m	main/MedianComparison$MedianMapper.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MedianScala/target/scala-2.10/classes/main/MedianComparison$MedianMapper.class[0m
+[0m[[0mdebug[0m] [0m	main[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MedianScala/target/scala-2.10/classes/main[0m
+[0m[[0mdebug[0m] [0m	main/MedianComparison$MedianReducer$$anonfun$reduce$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MedianScala/target/scala-2.10/classes/main/MedianComparison$MedianReducer$$anonfun$reduce$1.class[0m
+[0m[[0mdebug[0m] [0m	main/MedianComparison$.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MedianScala/target/scala-2.10/classes/main/MedianComparison$.class[0m
+[0m[[0mdebug[0m] [0m	main/MedianComparison$MedianReducer.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MedianScala/target/scala-2.10/classes/main/MedianComparison$MedianReducer.class[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m

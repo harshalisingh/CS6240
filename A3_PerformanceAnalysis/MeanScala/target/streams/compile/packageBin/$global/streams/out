@@ -1,0 +1,15 @@
+[0m[[0minfo[0m] [0mPackaging /home/hduser/Singh_Mehta_A3/MeanScala/target/scala-2.10/meancomparison_2.10-1.0.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	main/MeanComparison$FlightReducer.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MeanScala/target/scala-2.10/classes/main/MeanComparison$FlightReducer.class[0m
+[0m[[0mdebug[0m] [0m	main/MeanComparison$.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MeanScala/target/scala-2.10/classes/main/MeanComparison$.class[0m
+[0m[[0mdebug[0m] [0m	main/MeanComparison$FlightMapper.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MeanScala/target/scala-2.10/classes/main/MeanComparison$FlightMapper.class[0m
+[0m[[0mdebug[0m] [0m	main[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MeanScala/target/scala-2.10/classes/main[0m
+[0m[[0mdebug[0m] [0m	main/MeanComparison.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MeanScala/target/scala-2.10/classes/main/MeanComparison.class[0m
+[0m[[0mdebug[0m] [0m	main/MeanComparison$FlightReducer$$anonfun$reduce$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/hduser/Singh_Mehta_A3/MeanScala/target/scala-2.10/classes/main/MeanComparison$FlightReducer$$anonfun$reduce$1.class[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m

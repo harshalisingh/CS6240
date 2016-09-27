@@ -1,0 +1,102 @@
+---
+Title: "A3: Comparisons"
+Author: "Harshali Singh, Vishal Mehta"
+Output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+---
+
+### Link Referred for Fast median 
+
+https://en.wikipedia.org/wiki/Quickselect
+
+###Configurations
+
+We have considered 3 Statistics for 5 versions of code, for a total of 15 configurations:-
+
+(i) singe threaded Java
+(ii) multi-threaded Java
+(iii) pseudo-distributed MR
+(iv) distributed MR
+(v) Scala
+
+Statistics:
+
+(i) Mean
+(ii) Median
+(iii) Fast Median
+
+###Implementation
+
+We have calculated different statistics in the following way:-
+
+####Mean
+The Mapper code reads the input files as <Key,Value> pairs and emits key value pairs. We are cleaning each file and performing sanity check in the Mapper. The Key is carrier code and month separated by tab.
+
+The reducer code then sums all the average ticket prices for each carrier code and take the average using the total count of that particular key.
+
+####Median
+The Mapper code reads the input files as <Key,Value> pairs and emits key value pairs. We are cleaning each file and performing sanity check in the Mapper. The Key is carrier code and month separated by tab.
+
+The reducer code then sorts all the average ticket prices of a particular key and finds the middle value as the median price.
+
+
+####Fast Median
+The Mapper code reads the input files as <Key,Value> pairs and emits key value pairs. We are cleaning each file and performing sanity check in the Mapper. The Key is carrier code and month separated by tab.
+
+The reducer code then finds the median price by using QuickSelect algorithm which has a running time of O(n). 
+
+Assumptions: We have only considered Average Ticket Prices for 2015 flights.
+
+
+###Benchmarking Harness
+
+We calculate execution time of each configuration in sequence and dump the time in a csv file. We achieve this using the Linux Makefile script where each configuration is run in sequence and time is fetched. We are using R to read the csv files and plot a graph.
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+
+#Read the output file
+table = read.csv("benchmarking.csv", sep=",")
+
+```
+
+###Graph Plot
+
+We are using R to plot the executing timings of all 15 configurations. 
+
+```{r}
+
+#Plot configuration vs timing and for each statistic calculated
+p <- ggplot(table, aes(CONF, TIME)) + geom_point()
+p + facet_grid(. ~ MODE)
+
+
+```
+
+### Sample Output:
+
+This is the output of MeanComparison with a sample input of one file.
+
+1	AA	43971	530.1824
+1	AS	13213	230.10681
+1	B6	21579	523.64746
+1	DL	64082	598.80695
+1	EV	49589	305.67844
+1	F9	6824	131.74747
+1	HA	6434	302.6006
+1	MQ	29635	288.26422
+1	NK	8730	487.5079
+1	OO	47737	307.34674
+1	UA	38324	969.1005
+1	US	33424	600.1598
+1	VX	4726	652.921
+1	WN	99553	159.35498
+
+###Conclusion
+The output of this assignment is a Report.pdf file which explains our implementation and the plot. Also it includes the sample output with a sample input of the MeanComparison Map reduce program.
+The Fast median version runs faster than the normal median with the same input and same output values.  
+Moreover, the single threaded version runs slower than the Multi threaded version with a given input.
+
