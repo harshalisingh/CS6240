@@ -1,0 +1,87 @@
+{
+    "Cluster": {
+        "Status": {
+            "Timeline": {
+                "ReadyDateTime": 1455325297.645, 
+                "CreationDateTime": 1455324868.269, 
+                "EndDateTime": 1455325946.976
+            }, 
+            "State": "TERMINATED", 
+            "StateChangeReason": {
+                "Message": "Steps completed", 
+                "Code": "ALL_STEPS_COMPLETED"
+            }
+        }, 
+        "Ec2InstanceAttributes": {
+            "EmrManagedMasterSecurityGroup": "sg-04a06163", 
+            "IamInstanceProfile": "EMR_EC2_DefaultRole", 
+            "Ec2AvailabilityZone": "us-west-2a", 
+            "EmrManagedSlaveSecurityGroup": "sg-03a06164"
+        }, 
+        "Name": "Test Cluster_A4", 
+        "ServiceRole": "EMR_DefaultRole", 
+        "Tags": [], 
+        "TerminationProtected": false, 
+        "ReleaseLabel": "emr-4.3.0", 
+        "NormalizedInstanceHours": 6, 
+        "InstanceGroups": [
+            {
+                "RequestedInstanceCount": 1, 
+                "Status": {
+                    "Timeline": {
+                        "ReadyDateTime": 1455325295.135, 
+                        "CreationDateTime": 1455324868.273, 
+                        "EndDateTime": 1455325946.684
+                    }, 
+                    "State": "TERMINATED", 
+                    "StateChangeReason": {
+                        "Message": "Job flow terminated", 
+                        "Code": "CLUSTER_TERMINATED"
+                    }
+                }, 
+                "Name": "MASTER", 
+                "InstanceGroupType": "MASTER", 
+                "Id": "ig-1VM437Z774KK5", 
+                "Configurations": [], 
+                "InstanceType": "c1.medium", 
+                "Market": "ON_DEMAND", 
+                "RunningInstanceCount": 0
+            }, 
+            {
+                "RequestedInstanceCount": 2, 
+                "Status": {
+                    "Timeline": {
+                        "ReadyDateTime": 1455325297.653, 
+                        "CreationDateTime": 1455324868.273, 
+                        "EndDateTime": 1455325946.684
+                    }, 
+                    "State": "TERMINATED", 
+                    "StateChangeReason": {
+                        "Message": "Job flow terminated", 
+                        "Code": "CLUSTER_TERMINATED"
+                    }
+                }, 
+                "Name": "CORE", 
+                "InstanceGroupType": "CORE", 
+                "Id": "ig-RSEJ7OPIL7OY", 
+                "Configurations": [], 
+                "InstanceType": "c1.medium", 
+                "Market": "ON_DEMAND", 
+                "RunningInstanceCount": 0
+            }
+        ], 
+        "Applications": [
+            {
+                "Version": "2.7.1", 
+                "Name": "Hadoop"
+            }
+        ], 
+        "MasterPublicDnsName": "ec2-54-200-14-24.us-west-2.compute.amazonaws.com", 
+        "VisibleToAllUsers": true, 
+        "BootstrapActions": [], 
+        "LogUri": "s3n://singhmehta/logs/", 
+        "AutoTerminate": true, 
+        "Id": "j-19EJNLTWGA0FG", 
+        "Configurations": []
+    }
+}

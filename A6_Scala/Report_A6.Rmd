@@ -1,0 +1,61 @@
+---
+title: 'A6: Missed Connection - Spark'
+author: "Harshali Singh, Vishal Mehta"
+output:
+  html_document:
+    toc: true
+    theme: united
+---
+###Implementation
+
+Initially we are reading all CSV files and formatting(splitting, trimming) each and every row/line. Then we filter the data without headers. This data is then passed through the sanity test. 
+We then create two RDDs one for arriving flight and other for departing flight. 
+
+F Data(Arriving Flight) :-
+
+Key: Carrier Code, Year, Destination Airport Code
+Value: Scheduled departure date, Scheduled Arrival time, Actual Arrival Time, Cancelled
+ 
+G Data(Departing Flight) :-
+ 
+Key: Carrier Code, Year, Origin Airport Code
+Value: Scheduled departure date, Scheduled Departure time, Actual Departure Time
+
+We use co-group as a transformation function on both the RDDs which group data from both RDDs sharing the same key. 
+For eg: 
+	RDD1 cogroup RDD2
+
+	Result of cogroup : {(1,([2],[])), (3,([4, 6],[9]))}
+
+The result of our co-group is a key with two iterables of Array[String] values which is then mapped with map function. Inside this map function we again create two maps for F and G data in which we add the values to the corresponding array lists in order to iterate over them. Also we have two variables cons for Number of connections and missedcons for Number of Missed connections. 
+
+After that we iterate over two array lists and compute number of connections and missed connections based on the different conditions mentioned in the question:
+	A connection is any pair of flight F and G of the same carrier such as F.Destination = G.Origin and the scheduled departure of G is 		<= 6 hours and >= 30 minutes after the scheduled arrival of F.
+	A connection is missed when the actual arrival of F < 30 minutes before the actual departure of G. 
+
+We emit the tuple as (key,(connections , missedconnections)) which is then collected and manipulated by another map which emits the final output as described below.
+
+We have computed the percentage and the total connections as well as total missed connections for (carrier,year) with the help of awk command.
+
+###Considerations
+
+1.	The flight date is the scheduled departure date.
+2.	The connections that roll over an year are not considered.
+3.	Percentage of missed connections is calculated for each airline per year.
+4.	The connections that span over a month (i.e. If a flight departed on 31st July and the connecting flight is on 1st August).
+5. 	The connections that span over a day (i.e. If a flight departed on 1st July and the connecting flight is on 2nd july).
+6.	If the arriving flight is cancelled then the corresponding connection is considered missed.
+7.	If the departing flight is cancelled then the corresponding connection is NOT considered missed. 
+
+###Time Comparison
+We have used python script to ping the emr cluster to know whether it has terminated or not. It also calculates the running time of the program.
+
+Map reduce locally: 2 hrs approx
+Map reduce on EMR: 1.5 hrs approx
+
+Spark locally: 1 hr approx
+Spark on EMR: As it runs on 4 worker clusters it is little bit faster.It takes 45 min approx.
+
+###Conclusion
+Based on above comparison it is evident that the Spark implementations run faster than Map Reduce implementations.
+

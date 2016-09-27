@@ -1,0 +1,151 @@
+---
+title: 'A4: Linear Regression'
+author: "Harshali Singh, Vishal Mehta"
+output:
+  html_document:
+    toc: true
+    theme: united
+---
+###Implementation
+
+In the Mapper, we have filtered out the records with year less than 2010 or greater than 2015 as we do not need to take them into consideration.
+Key: Carrier Code
+Value: Year, Avg Ticket Price, Distance Traveled, Actual Elapsed Flight Time
+All the <Key, Value> pairs which pass the sanity Test are sent to Reducer.
+
+In Reducer, we first check if the airline is active in 2015 (we check all the values for Year 2015). For the airline which was active in 2015, all the values for that carrier (for year 2010-1014) are reduced and written to output.
+
+###Linear Regression
+
+The R script reads all the *.txt files containing inidividual carrier data.
+
+We have computed 2 linear regression models for each carrier in R.
+1. Price (Response variable), Distance Traveled(Explanatory variable)
+2. Price (Response variable), Flight Time(Explanatory variable)
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+
+file_list <- list.files(pattern="*.txt")
+
+dist_rsquared = list()
+time_rsquared = list()
+dist_mse = list()
+time_mse = list()
+
+dist_slope <- data.frame(Carrier = character(13), Slope = numeric(13), stringsAsFactors = FALSE)
+
+time_slope <- data.frame(Carrier = character(13), Slope = numeric(13), stringsAsFactors = FALSE)
+
+```
+
+###Graph Plot
+
+There are 26 plots generated (2 for each carrier). The Plots can be seen attached at the end of report.
+
+```{r}
+
+for(i in 1:13){
+  
+  dataset <- read.table(file_list[i], header=FALSE, sep="\t")
+  names(dataset) <- c("Carrier", "Year", "Price", "Distance", "Time")
+  
+  carrier <- dataset$Carrier[i]
+  plot1 <- "_Price-Distance"
+  plot2 <- "_Price-Time"
+  format= ".png"
+  
+  plotname = paste(carrier,plot1,format, sep="")
+  png(filename=plotname)   
+  
+  #Linear Regression for Price-Distance
+  lm1 <- lm(Price ~ Distance, data=dataset)
+  p1 <- plot(Price ~ Distance, data = dataset, main=carrier)
+  abline(lm1, col="red")
+  
+  sm <- summary(lm1)
+  dist_rsquared[i] <- sm$adj.r.squared
+  dist_mse[i] <-  mean(sm$residuals^2)
+  
+  dist_slope$Carrier[i] <- substring(file_list[i], 1 , 2)
+  dist_slope$Slope[i] <- sm$coefficients[2][1]
+  
+  dev.off()
+  
+  plotname = paste(carrier,plot2,format, sep="")
+  png(filename=plotname)  
+  
+  #Linear Regression for Price-Time
+  lm2 <- lm(Price ~ Time, data=dataset)
+  p2 <- plot(Price ~ Time, data=dataset, main=carrier)
+  abline(lm2, col="red")
+  
+  sm <- summary(lm2)
+  time_rsquared[i] <- sm$adj.r.squared
+  time_mse[i] <-  mean(sm$residuals^2)
+  
+  time_slope$Carrier[i] <- substring(file_list[i], 1 , 2)
+  time_slope$Slope[i] <- sm$coefficients[2][1]
+  
+  dev.off()
+}
+
+```
+###Conclusion
+
+```{r, echo=FALSE}
+
+# R-Squared Distance
+avg_dist_rsq = mean(unlist(dist_rsquared))
+
+# RMSE Distance
+avg_dist_mse = mean(unlist(dist_mse))
+
+#R-Squared Time
+avg_time_rsq = mean(unlist(time_rsquared))
+
+# RMSE Time
+avg_time_mse = mean(unlist(time_mse))
+
+if(avg_dist_rsq > avg_time_rsq) {
+  print("Distance is a better variable")
+  print(paste("Adjusted R-Squared for Price-Distance:", avg_dist_rsq))
+  print(paste("Adjusted R-Squared for Price-Time:", avg_time_rsq))
+
+  print("New Ranking of Airlines:")
+  sorted <- dist_slope[order(dist_slope$Slope),] 
+  
+  sorted
+  
+} else{
+  print("Time is a better variable")
+  print(paste("Adjusted R-Squared for Price-Time:", avg_time_rsq))
+  print(paste("Adjusted R-Squared for Price-Distance:", avg_dist_rsq))
+
+  print("New Ranking of Airlines:")
+  sorted <- time_slope[order(time_slope$Slope),] 
+  
+  sorted
+}
+
+```
+
+####Better Variable
+
+R-squared (also known as the Coefficient of Determination) is the “percent of variance explained” by the model.
+
+We see from the output that our Price-Distance model causes 69.4% of the variation in price using the Distance as the explanatory variable. The Price-Time model causes 69.0%  of the variation in price using Time as the explanatory variable. Higher the adjusted R-squared, higher the percent that is the closest to the line of best fit. Hence, among the two (Distance or Time) Distance is a better explanatory variable.
+
+We have used Adjusted R-squared to decide the model's explanatory power. Adjusted R-squared is an unbiased estimate of the fraction of variance explained, taking into account the sample size and number of variables. 
+
+####Cheapest Flight
+
+After deciding the better regression model, we have considered Slope and Intercept as the factor to rank the airlines. Flight with the minimum slope and intercept can be said as the cheapest flight which is Frontier Airline, F9.
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+---
+title: 'A5: Missed Connection'
+author: "Harshali Singh, Vishal Mehta"
+output:
+  html_document:
+    toc: true
+    theme: united
+---
+###Implementation
+
+In the Mapper, we are filtering the records that do not pass the sanity test. We have created two Key-Value pairs for each flight.In the first <K,V> pair we consider the arrival information of the flight and in the second <K,V> pair we consider the departure information of the flight. 
+
+F Data(Arriving Flight) :-
+
+Key: Carrier Code, Year, Destination Airport Code
+Value: Scheduled departure date, Scheduled Arrival time, Actual Arrival Time, Cancelled
+ 
+G Data(Departing Flight) :-
+ 
+Key: Carrier Code, Year, Origin Airport Code
+Value: Scheduled departure date, Scheduled Departure time, Actual Departure Time, Cancelled
+
+
+In Reducer, we iterate over all the values and identify that the value is F data or G data. If it is F data we compare it to G data and vice-versa to identify if it is a valid connection or not. We emit the number of total connections and the number of missed connections as the value for each key. 
+
+We have computed the percentage and the total connections as well as total missed connections for (carrier,year) with the help of awk command.
+
+###Considerations
+
+1.	The flight date is the scheduled departure date.
+2.	The connections that roll over an year are not considered.
+3.	Percentage of missed connections is calculated for each airline per year.
+4.	The connections that span over a month (i.e. If a flight departed on 31st July and the connecting flight is on 1st August).
+5. 	The connections that span over a day (i.e. If a flight departed on 1st July and the connecting flight is on 2nd july).
+6.	If the arriving flight is cancelled then the corresponding connection is considered missed.
+7.	If the departing flight is cancelled then the corresponding connection is NOT considered missed. 
+
+###Conclusion
+The output of the data is very helpful in understanding which airline had the most number of inefficient scheduling of flights leading to missed connections. 
+
