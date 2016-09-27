@@ -1,11 +1,3 @@
-*************Question***************************
-
-Airfares evolve with time, one month of traffic is not sufficient to answer which airline is the cheapest. Try with two years worth of OTP data. Improve throughput of your code with parallel processing primitives.
-Fine print: 
-(0) Individual assignment. 
-(1) The input is "-p -input=DIR" where DIR is the path to a directory containing data files. All files in the directory will be processed. 
-(2) The output is K and F, and a sequence of "C p m"s where m is the median ticket price. Restrict your output to airlines that are active in January 2015.
-
 ************* Output of the Program ****************************
 Header consisting of fields was not considered as a valid record and hence not part of the result.
 The K and F values are calculated for all records however, whether the flight is Active in January 2015 is 
