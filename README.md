@@ -1,7 +1,4 @@
-# CS6240
-Parallel Data Processing in MapReduce
-
-# Parellel Data Processing with MapReduce
+# CS6240 Parellel Data Processing with MapReduce
 Assignments and Project for CS6240
 
 ## A0 - Sequential Analysis.
