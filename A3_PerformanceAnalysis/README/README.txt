@@ -1,4 +1,4 @@
-dAuthor: Harshali Singh, Vishal Mehta
+Author: Harshali Singh, Vishal Mehta
 
 Pre-Requisites:
 -------------------
