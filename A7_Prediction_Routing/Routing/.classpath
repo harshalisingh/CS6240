@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="confusion/" kind="src" path=""/>
+	<classpathentry kind="src" path="confusion"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/hduser/Downloads/lib/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/hduser/Downloads/lib/commons-csv-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/hduser/Downloads/lib/hadoop-annotations-2.6.3.jar"/>
+	<classpathentry kind="lib" path="/home/hduser/Downloads/lib/hadoop-common-2.6.3.jar"/>
+	<classpathentry kind="lib" path="/home/hduser/Downloads/lib/hadoop-mapreduce-client-core-2.6.3.jar"/>
+	<classpathentry kind="lib" path="/home/hduser/Downloads/lib/joda-time-2.9.2.jar"/>
+	<classpathentry kind="lib" path="/home/hduser/Downloads/lib/weka-3.7.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
