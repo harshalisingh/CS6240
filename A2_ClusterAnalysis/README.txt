@@ -1,3 +1,14 @@
+******************Question***********************
+Compare the cost of computing (A) mean, (B) median, and (C) fast median for (i) singe threaded and (ii) multi-threaded Java, as well as (iii) pseudo-distributed MR and (iv) distributed MR.
+Fine print: 
+(0) Group assignment, two students. 
+(1) Reuse previous implementations as much as possible. Output "m C v" triples where m identifies the month, C is an airline, and v is the median or mean. 
+(2) Devise your own approach to speed up computation of the median, this may include approximation techniques. If you choose to approximate, make sure to measure accuracy.  
+(3) Evaluate the performance of the following configurations i-A, i-B, ii-A, ii-B, iii-A, iii-B, iii-C, iv-A, iv-B, iv-C. 
+(4) Create a benchmarking harness that will automatically run all configurations for different input sizes and generate graphs of the performance. The harness should output timings in a CSV file and generate a  PDF using R. 
+(5) Produce a report that describes your conclusions. Use LaTex or similar. (6) The reference solution is 350 lines of Java, 40 lines of R, and 150 line of Make.
+
+
 Pre-Requisites:
 -------------------
 
