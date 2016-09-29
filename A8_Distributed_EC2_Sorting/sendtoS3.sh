@@ -1,4 +1,4 @@
-#Author: Vishal Mehta, Harshali Singh	
+#Author: Harshali Singh	
 #!/bin/bash
 
 bucket_name=
